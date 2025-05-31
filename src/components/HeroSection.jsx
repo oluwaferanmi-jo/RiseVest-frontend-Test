@@ -2,7 +2,7 @@ import React from "react";
 
 export default function HeroSection() {
   return (
-    <section className="px-[40px] pt-[40px]  flex flex-col lg:flex-row  items-start lg:items-center gap-6">
+    <section className="px-[20px] pt-[40px] md:px-[40px] flex flex-col lg:flex-row  items-start lg:items-center gap-6">
      
       <div>
         <h2 className="text-[28px] font-semibold text-black leading-tight">

@@ -1,7 +1,12 @@
 import React from "react";
+import {
+  HiOutlineEnvelope,
+  HiOutlineDocumentText,
+} from "react-icons/hi2";
 
 export default function FeedbackCard({ data }) {
-  const { name, email, phone, message, type } = data;
+  const { name, email, message, type } = data;
+
   const initials = name
     .split(" ")
     .map((n) => n[0])
@@ -24,24 +29,26 @@ export default function FeedbackCard({ data }) {
 
   return (
     <div className="border border-gray-200 p-4 rounded-[12px] bg-white shadow-sm">
-        <div className="flex items-center gap-3">
-          <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold ${tagColor}`}>
-            {initials}
-          </div>
-          <div className="text-sm font-semibold text-gray-800">{name}</div>
+      
+      <div className="flex items-center gap-3">
+        <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold ${tagColor}`}>
+          {initials}
         </div>
-
-        <div className="mt-3 text-sm text-gray-600">{email}
-
-        </div>
-        <div className="text-sm text-gray-600">{phone}
-
-        </div>
-
-        <div className="mt-4 text-sm font-semibold text-gray-800">{typeLabel[type]}
-          
-        </div>
-        <p className="text-sm text-gray-700 mt-1">{message}</p>
+        <div className="text-sm font-semibold text-gray-800">{name}</div>
       </div>
+
+      
+      <div className="mt-3 flex items-center gap-2 text-sm text-gray-600">
+        <HiOutlineEnvelope className="text-lg" />
+        <span>{email}</span>
+      </div>
+
+      
+      <div className="mt-4 flex items-center gap-2 text-sm text-gray-800 font-semibold">
+        <HiOutlineDocumentText className="text-lg" />
+        <span>{typeLabel[type]}</span>
+      </div>
+      <p className="text-sm px-[27px] text-gray-700 mt-1">{message}</p>
+    </div>
   );
 }

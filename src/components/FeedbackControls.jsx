@@ -8,7 +8,7 @@ export default function FeedbackControls({ currentFilter, setFilter, onOpenForm 
   ];
 
   return (
-    <div className="px-[40px] py-[24px] w-full flex flex-wrap justify-between items-center gap-4">
+    <div className="px-[20px] py-[24px] md:px-[40px] w-full flex flex-wrap justify-between items-center gap-4">
       
       <div className="flex gap-3 flex-wrap">
         {filters.map((filter) => {
@@ -33,7 +33,7 @@ export default function FeedbackControls({ currentFilter, setFilter, onOpenForm 
       
       <button
         onClick={onOpenForm}
-        className="flex items-center w-[244px] h-[52px] gap-2 px-8 py-3 bg-[#005C4B] text-white font-medium text-sm rounded-full hover:bg-[#00483A] transition-colors"
+        className="flex items-center w-[244px] h-[52px] gap-2 px-8 py-3 bg-[#006D79] text-white font-medium text-sm rounded-full hover:bg-[#1e4045] transition-colors"
       >
         <span className="text-xl leading-none">+</span> Submit new feedback
       </button>

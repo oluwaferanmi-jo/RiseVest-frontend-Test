@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 export default function FeedbackForm({ onClose, onSubmit }) {
   const [formData, setFormData] = useState({
@@ -8,21 +8,45 @@ export default function FeedbackForm({ onClose, onSubmit }) {
     message: "",
   });
 
+  const [isValid, setIsValid] = useState(false);
+
+  
+  useEffect(() => {
+    const { name, email, type, message } = formData;
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const valid = name && emailPattern.test(email) && type && message;
+    setIsValid(valid);
+  }, [formData]);
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!isValid) return;
     onSubmit(formData);
     onClose();
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur bg-black/30">
-      <div className="bg-white w-full max-w-md rounded-[16px] p-6 shadow-lg">
-        <h2 className="text-lg font-semibold mb-1">What would you like to bring to our attention?</h2>
-        <p className="text-sm text-gray-500 mb-4">Kindly fill the details below to submit.</p>
+   <div className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur bg-black/30 px-4">
+    <div
+      className="bg-white w-full 
+                rounded-[16px] 
+                shadow-lg 
+                p-5 sm:p-6 lg:p-4 
+                max-w-sm sm:max-w-md md:max-w-md lg:max-w-xl 
+                h-auto lg:h-fit"
+    >
+
+
+          <h2 className="text-base sm:text-lg font-semibold mb-1">
+            What would you like to bring to our attention?
+          </h2>
+          <p className="text-sm text-gray-500 mb-4">
+            Kindly fill the details below to submit.
+          </p>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
@@ -32,7 +56,7 @@ export default function FeedbackForm({ onClose, onSubmit }) {
               name="name"
               value={formData.name}
               onChange={handleChange}
-              className="w-full mt-1 p-3 rounded-md border border-gray-300 text-sm"
+              className="w-full mt-1 p-3 rounded-md border border-gray-300 text-sm focus:outline-none"
               placeholder="Enter full name"
               required
             />
@@ -45,7 +69,7 @@ export default function FeedbackForm({ onClose, onSubmit }) {
               name="email"
               value={formData.email}
               onChange={handleChange}
-              className="w-full mt-1 p-3 rounded-md border border-gray-300 text-sm"
+              className="w-full mt-1 p-3 rounded-md border border-gray-300 text-sm focus:outline-none"
               placeholder="Enter email"
               required
             />
@@ -57,7 +81,7 @@ export default function FeedbackForm({ onClose, onSubmit }) {
               name="type"
               value={formData.type}
               onChange={handleChange}
-              className="w-full mt-1 p-3 rounded-md border border-gray-300 text-sm "
+              className="w-full mt-1 p-3 rounded-md border border-gray-300 text-sm focus:outline-none"
               required
             >
               <option value="">Select feedback type</option>
@@ -73,7 +97,7 @@ export default function FeedbackForm({ onClose, onSubmit }) {
               name="message"
               value={formData.message}
               onChange={handleChange}
-              className="w-full mt-1 p-3 rounded-md border border-gray-300 text-sm"
+              className="w-full mt-1 p-3 rounded-md border border-gray-300 text-sm focus:outline-none"
               rows={4}
               placeholder="Enter feedback message"
               required
@@ -84,13 +108,20 @@ export default function FeedbackForm({ onClose, onSubmit }) {
             <button
               type="button"
               onClick={onClose}
-              className="w-1/2 py-3 rounded-full bg-gray-100 text-gray-700 font-medium hover:bg-gray-200"
+              className="w-1/2 py-3 rounded-full bg-gray-100 text-gray-700 font-medium hover:bg-gray-200 focus:outline-none"
             >
               Close
             </button>
+
             <button
               type="submit"
-              className="w-1/2 py-3 rounded-full bg-[#9FDCE1] text-white font-medium hover:bg-[#00483A]"
+              disabled={!isValid}
+              className={`w-1/2 py-3 rounded-full font-medium text-white focus:outline-none
+                ${
+                  isValid
+                    ? "bg-[#006D79]"
+                    : "bg-[#9FDCE1] cursor-not-allowed"
+                }`}
             >
               Submit
             </button>
