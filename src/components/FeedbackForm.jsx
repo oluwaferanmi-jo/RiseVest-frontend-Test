@@ -56,7 +56,7 @@ export default function FeedbackForm({ onClose, onSubmit }) {
               name="name"
               value={formData.name}
               onChange={handleChange}
-              className="w-full mt-1 p-3 rounded-md border border-gray-300 text-sm focus:outline-none"
+              className="w-full mt-1 p-3  md:mt-1 md:p-2 md:pt-1 rounded-md border border-gray-300 text-base lg:text-sm focus:outline-none"
               placeholder="Enter full name"
               required
             />
@@ -69,7 +69,7 @@ export default function FeedbackForm({ onClose, onSubmit }) {
               name="email"
               value={formData.email}
               onChange={handleChange}
-              className="w-full mt-1 p-3 rounded-md border border-gray-300 text-sm focus:outline-none"
+              className="w-full  mt-1 p-3  md:mt-1 md:p-2 md:pt-1 rounded-md border border-gray-300 text-base lg:text-sm focus:outline-none"
               placeholder="Enter email"
               required
             />
@@ -81,7 +81,7 @@ export default function FeedbackForm({ onClose, onSubmit }) {
               name="type"
               value={formData.type}
               onChange={handleChange}
-              className="w-full mt-1 p-3 rounded-md border border-gray-300 text-sm focus:outline-none"
+              className="w-full mt-1 p-3  md:mt-1 md:p-2 md:pt-1 rounded-md border border-gray-300 text-base lg:text-sm focus:outline-none"
               required
             >
               <option value="">Select feedback type</option>
@@ -97,14 +97,14 @@ export default function FeedbackForm({ onClose, onSubmit }) {
               name="message"
               value={formData.message}
               onChange={handleChange}
-              className="w-full mt-1 p-3 rounded-md border border-gray-300 text-sm focus:outline-none"
+              className="w-full mt-1 p-3  md:mt-1 md:p-2 md:pt-1 rounded-md border border-gray-300 text-base lg:text-sm focus:outline-none"
               rows={4}
               placeholder="Enter feedback message"
               required
             />
           </div>
 
-          <div className="flex justify-between gap-4 pt-2">
+          <div className="flex justify-between gap-4 pt-0">
             <button
               type="button"
               onClick={onClose}

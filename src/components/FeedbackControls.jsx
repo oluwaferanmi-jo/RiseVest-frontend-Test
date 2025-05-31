@@ -18,7 +18,7 @@ export default function FeedbackControls({ currentFilter, setFilter, onOpenForm 
             <button
               key={filter.value}
               onClick={() => setFilter(filter.value)}
-              className={`px-2 py-[6px] rounded-[6px] w-[134px] h-[32px] text-sm font-medium border transition-colors ${
+              className={`px-2 py-[2px] rounded-[6px] w-[134px] h-[32px] text-sm font-medium border transition-colors ${
                 isActive
                   ? "bg-[#EDFFFF] text-[#006D79] border-transparent"
                   : "bg-white text-gray-700 border-gray-300"

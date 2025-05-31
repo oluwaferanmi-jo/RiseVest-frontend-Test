@@ -15,6 +15,8 @@ export default function App() {
   const [filter, setFilter] = useState("all");
   const [showForm, setShowForm] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 16;
 
  useEffect(() => {
   async function loadData() {
@@ -36,6 +38,18 @@ export default function App() {
 
   loadData();
 }, []);
+
+const filtered = feedbackList.filter(item => {
+  if (filter === "all") return true;
+  return item.type === filter;
+});
+
+const totalPages = Math.ceil(filtered.length / itemsPerPage);
+const paginatedFeedback = filtered.slice(
+  (currentPage - 1) * itemsPerPage,
+  currentPage * itemsPerPage
+);
+
 
 
  const handleSubmit = async (newFeedback) => {
@@ -80,9 +94,30 @@ export default function App() {
       )}
     {showSuccess && <FeedbackSuccessModal onClose={() => setShowSuccess(false)} />}
 
-      <FeedbackGrid feedbackList={feedbackList} currentFilter={filter} />
-      
+    
+    <FeedbackGrid feedbackList={paginatedFeedback} currentFilter={filter} />
 
-    </div>
+
+    <div className="flex justify-between items-center px-6 py-4 text-sm text-gray-600">
+  <span>Page {currentPage} of {totalPages}</span>
+  <div className="space-x-2">
+    <button
+      onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+      disabled={currentPage === 1}
+      className="px-3 py-1 w-8 h-8 border rounded-[50%] disabled:opacity-40"
+    >
+      {"<"}
+    </button>
+    <button
+      onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+      disabled={currentPage === totalPages}
+      className="px-3 py-1 w-8 h-8 border rounded-[50%] disabled:opacity-40"
+    >
+      {">"}
+    </button>
+  </div>
+</div>
+
+      </div>
   );
 }
