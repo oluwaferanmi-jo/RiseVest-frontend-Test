@@ -98,7 +98,7 @@ const paginatedFeedback = filtered.slice(
     <FeedbackGrid feedbackList={paginatedFeedback} currentFilter={filter} />
 
 
-    <div className="flex justify-between items-center px-6 py-4 text-sm text-gray-600">
+    <div className="flex justify-between mb-6 items-center px-6 py-4 pt-10 text-sm text-gray-600">
   <span>Page {currentPage} of {totalPages}</span>
   <div className="space-x-2">
     <button
