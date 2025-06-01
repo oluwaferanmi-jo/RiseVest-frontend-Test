@@ -23,8 +23,21 @@ export default function App() {
       try {
         const apiData = await fetchFeedbacks();
         const localData = loadFeedbacks();
-        const mergedData = [...localData, ...apiData];
-        setFeedbackList(mergedData);
+        const combined = [...localData, ...apiData];
+
+       
+        const deduped = [];
+        const seen = new Set();
+
+        for (const item of combined) {
+          const key = `${item.email}-${item.message}`;
+          if (!seen.has(key)) {
+            seen.add(key);
+            deduped.push(item);
+          }
+        }
+
+        setFeedbackList(deduped);
       } catch (err) {
         console.warn("API fetch failed, loading local data only.");
         setFeedbackList(loadFeedbacks());
@@ -47,16 +60,18 @@ export default function App() {
     setShowSuccess(true);
   };
 
-  const filtered = feedbackList.filter(item => {
+  const filtered = feedbackList.filter((item) => {
     const matchesType = filter === "all" || item.type === filter;
-    const matchesSearch = item.message.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesSearch = item.message
+      .toLowerCase()
+      .includes(searchQuery.toLowerCase());
     return matchesType && matchesSearch;
   });
 
-  const totalPages = Math.ceil(filtered.length / itemsPerPage);
-  const paginatedFeedback = filtered.slice(
-    (currentPage - 1) * itemsPerPage,
-    currentPage * itemsPerPage
+    const totalPages = Math.ceil(filtered.length / itemsPerPage);
+    const paginatedFeedback = filtered.slice(
+      (currentPage - 1) * itemsPerPage,
+      currentPage * itemsPerPage
   );
 
   return (
@@ -70,7 +85,10 @@ export default function App() {
       />
 
       {showForm && (
-        <FeedbackForm onClose={() => setShowForm(false)} onSubmit={handleSubmit} />
+        <FeedbackForm
+          onClose={() => setShowForm(false)}
+          onSubmit={handleSubmit}
+        />
       )}
       {showSuccess && (
         <FeedbackSuccessModal onClose={() => setShowSuccess(false)} />
