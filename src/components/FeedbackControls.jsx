@@ -5,11 +5,11 @@ export default function FeedbackControls({ currentFilter, setFilter, onOpenForm 
     { label: "All feedbacks", value: "all" },
     { label: "Bugs only", value: "bug" },
     { label: "Feature requests", value: "feature" },
+    { label: "Others only", value: "other" }, 
   ];
 
   return (
-    <div className="px-[20px] py-[24px] md:px-[40px] w-full flex flex-wrap justify-between items-center gap-4">
-      
+    <div className="px-[20px] py-[24px] md:px-[40px] 2xl:px-[60px] w-full flex flex-wrap justify-between items-center gap-4">
       <div className="flex gap-3 flex-wrap">
         {filters.map((filter) => {
           const isActive = currentFilter === filter.value;
@@ -30,7 +30,6 @@ export default function FeedbackControls({ currentFilter, setFilter, onOpenForm 
         })}
       </div>
 
-      
       <button
         onClick={onOpenForm}
         className="flex items-center w-[244px] h-[52px] gap-2 px-8 py-3 bg-[#006D79] text-white font-medium text-sm rounded-full hover:bg-[#1e4045] transition-colors"

@@ -1,5 +1,5 @@
     ⚙️ Technical Notes
--This project integrates with the provided API endpoint to submit and fetch feedback (https://rise-frontend-test-api.developer-a6a.workers.dev/).
+-This project integrates with the provided API endpoint to submit and fetch feedback (https://rise-frontend-test-api.developer-a6a.workers.dev).
 
 -Due to CORS restrictions, the API is currently blocking requests from localhost, resulting in failed network calls in most development environments.
 
@@ -39,7 +39,8 @@ export default function FeedbackForm({ onSubmit }) {
   );
 }
 
-### 🔍The Issue, how I Investigated & Solved It 
+
+🔍The Issue, how I Investigated & Solved It 
 
 -When inspecting the bug, I noticed that clicking the “Submit Feedback” button did nothing. After reviewing the code, I found two key issues:
 

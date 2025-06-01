@@ -21,7 +21,7 @@ export async function submitFeedback(data) {
       body: JSON.stringify(data),
     });
 
-    return res; // return full response for status checking
+    return res; 
   } catch (err) {
     console.warn("POST failed or was blocked (CORS). Falling back.");
     return null;
