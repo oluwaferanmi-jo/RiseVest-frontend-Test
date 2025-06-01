@@ -31,7 +31,7 @@ export default function Header({ onSearchChange }) {
         className="h-[24px] md:h-[32px] w-auto"
       />
 
-     
+      
       <div className="hidden sm:block relative">
         <input
           type="text"
@@ -60,7 +60,7 @@ export default function Header({ onSearchChange }) {
               onBlur={handleBlur}
               placeholder="Search..."
               autoFocus
-              className="border border-gray-300 rounded-full px-3 py-1 pr-8 text-sm focus:outline-none transition-all duration-200"
+              className="border border-gray-300 rounded-full px-3 py-1 pr-8 text-[16px] focus:outline-none transition-all duration-200"
             />
             {query && (
               <FiX
