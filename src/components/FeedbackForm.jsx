@@ -9,6 +9,7 @@ export default function FeedbackForm({ onClose, onSubmit }) {
   });
 
   const [isValid, setIsValid] = useState(false);
+  const [emailError, setEmailError] = useState("");
 
   useEffect(() => {
     const { name, email, type, message } = formData;
@@ -18,7 +19,15 @@ export default function FeedbackForm({ onClose, onSubmit }) {
   }, [formData]);
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+
+    if (name === "email") {
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      setEmailError(
+        value && !emailPattern.test(value) ? "Enter a valid email address" : ""
+      );
+    }
   };
 
   const handleSubmit = (e) => {
@@ -44,7 +53,7 @@ export default function FeedbackForm({ onClose, onSubmit }) {
         </p>
 
         <form onSubmit={handleSubmit} className="space-y-4">
-          {/* Full Name */}
+          
           <div>
             <label className="block text-sm font-medium">Full name</label>
             <input
@@ -72,11 +81,16 @@ export default function FeedbackForm({ onClose, onSubmit }) {
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                className="w-full pl-10  p-3 2xl:pl-10 rounded-md border border-gray-300 text-base lg:text-sm 2xl:text-lg focus:outline-none"
+                className={`w-full pl-10 p-3 2xl:pl-4 rounded-md border text-base lg:text-sm 2xl:text-lg focus:outline-none ${
+                  emailError ? "border-red-500" : "border-gray-300"
+                }`}
                 placeholder="Enter email"
                 required
               />
             </div>
+            {emailError && (
+              <p className="text-red-500 text-xs mt-1">{emailError}</p>
+            )}
           </div>
 
           
@@ -96,7 +110,7 @@ export default function FeedbackForm({ onClose, onSubmit }) {
             </select>
           </div>
 
-          
+         
           <div>
             <label className="block text-sm font-medium">Feedback message</label>
             <textarea
@@ -110,7 +124,7 @@ export default function FeedbackForm({ onClose, onSubmit }) {
             />
           </div>
 
-          
+        
           <div className="flex justify-between gap-4 pt-0">
             <button
               type="button"

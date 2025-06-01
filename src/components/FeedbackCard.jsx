@@ -34,10 +34,11 @@ export default function FeedbackCard({ data }) {
       </div>
 
       
-      <div className="mt-3 flex items-center gap-2 text-sm text-gray-600">
-        <img src="/message.svg" alt="Email Icon" className="w-4 h-4" />
-        <span>{email}</span>
-      </div>
+     <div className="mt-3 flex items-start gap-2 text-sm text-gray-600 break-words">
+      <img src="/message.svg" alt="Email Icon" className="w-4 h-4 mt-0.5 flex-shrink-0" />
+      <span className="break-words overflow-hidden whitespace-normal">{email}</span>
+    </div>
+
 
       
       <div className="mt-4 flex items-center gap-2 text-sm text-gray-800 font-semibold">

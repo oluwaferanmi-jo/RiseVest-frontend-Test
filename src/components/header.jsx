@@ -58,7 +58,7 @@ export default function Header({ onSearchChange }) {
               value={query}
               onChange={handleChange}
               onBlur={handleBlur}
-              placeholder="Search..."
+              placeholder="Search feedbacks..."
               autoFocus
               className="border border-gray-300 rounded-full px-3 py-1 pr-8 text-[16px] focus:outline-none transition-all duration-200"
             />
